@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} Accueil {% endblock %}
+{% block body %}
+{{parent()}}
+
+
+<div class="jumbotron">
+  <h1 class="display-3">INCREDIBILIS !! INFIRMUS , ETZIAM </h1>
+  <p class="lead">FIncredibilis est un wiki concernant le jeu ForHonor , Vous pouvez y trouver des tutoriels personnages ,des listes de combos ou encore les stats des personnages jouables...</p>
+  <hr class="my-4">
+  
+  {% if session.login is defined %}
+  {% else %}
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="index.php?page=creerUtilisateur" role="button">Créer un compte</a>
+  </p>
+  {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	{{ parent() }}
+	Créer un compte
+{% endblock %}
+
+{% block body %}
+	{{parent()}}
+
+	{% if form.valide is defined %}
+		{% if form.valide == true %}
+			<h1>Inscription réussie</h1>
+			<h1>Voici votre identifiant :
+				{{form.email}}</h1>
+			{% if form.role == Administrateur %}
+				<h1>Vous êtes administrateur du site</h1>
+			{% else %}
+				<h1>Vous êtes un client du site
+				</h1>
+			
+		{% endif %}
+	{% else %}
+		<h1>Echec de l'inscription</h1>
+		<h1>
+			<a href="index.php?page=creerUtilisateur">Retourner sur la page d'inscription</a>
+		</h1>
+	{% endif %}
+{% else %}
+
+	<div class="container">
+		<div class="row justify-content-center">
+
+			<form action="index.php?page=creerUtilisateur" method="post" enctype="application/x-www-form-urlencoded">
+				<fieldset>
+					<legend>Création d'un compte</legend>
+					<div class="form-group row"></div>
+					<div class="form-group">
+						<label for="exampleInputName1">Nom *</label>
+						<input class="form-control" id="exampleInputname1" name="nom" placeholder="Dupont" type="text">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputfirstname1">Prénom *</label>
+						<input class="form-control" id="exampleInputFirstName1" name="prenom" placeholder="Richard" type="text">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Adresse Mail *</label>
+						<input class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Entrez votre email" type="email">
+						<small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas vos informations personelles telles que votre email ou autres.</small>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Mot de passe *</label>
+						<input class="form-control" id="exampleInputPassword1" name="motdepasse" placeholder="Mot de passe" type="password">
+					</div>
+					
+					
+					<div class="form-group">
+						<label for="exampleInputphone1">Tel *
+						</label>
+						<input class="form-control" id="exampleInputphone" name="tel" type="tel" pattern="[0-9]{10}" placeholder="0680341057">
+					</div>
+					<div class="form-group">
+						<label for="exampleRole">Role
+						</label>
+						<select class="form-control" name="idrole">
+							<option value="Administrateur">Administrateur</option>
+							<option value="Client">Client</option>
+						</select>
+					</div>
+
+					<button type="submit" name="envoyer" class="btn btn-primary">Envoyer</button>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+{% endif %}{% endblock %}
