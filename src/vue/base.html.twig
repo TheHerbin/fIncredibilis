@@ -26,41 +26,23 @@
 							</a>
 						</li>
                        
+					   	<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+										Info sur le jeu 
+									</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href="index.php?page=info">For honor ???</a>
+									</div>
+								</li>
 					
 						{% if session.login is defined %}
-					{% if session.role == "Client" %}
-						<li class="nav-item active">
-							<a class="nav-link" href="index.php?page=stock">Stock/Boutique<span class="sr-only">(current)</span>
-							</a>
-						</li>
-
-
-
-
-					{% endif %}
 							{% if session.role == "Administrateur" %}
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 										Administration
 									</a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-										<a class="dropdown-item" href="index.php?page=stock">Stock</a>
-										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="index.php?page=utilisateur">Utilisateurs</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="index.php?page=obus">Obus</a>
-									</div>
-								</li>
-
-								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-										Ajout 
-									</a>
-									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-										<a class="dropdown-item" href="index.php?page=creerObus">Obus</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#">xXXXX</a>
-									
 									</div>
 								</li>
 							{% endif %}

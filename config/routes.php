@@ -3,7 +3,13 @@ function getPage($db){
     var_dump($_GET);
  $lesPages['accueil'] = "accueilControleur";
  $lesPages['creerUtilisateur'] = "creerUtilisateurControleur";
-
+ $lesPages['connexion'] = "connexionControleur";
+ $lesPages['deconnexion'] = "deconnexionControleur";
+ $lesPages['modifUtilisateur'] = "modifUtilisateurControleur;";
+ $lesPages['maintenance'] = "maintenanceControleur";
+ $lesPages['utilisateur'] = "utilisateurControleur";
+ $lesPages['info'] = "infoControleur";
+ $lesPages['maj'] = "majControleur";
 
 
  if ($db!=null){

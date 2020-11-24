@@ -1,0 +1,98 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	{{ parent() }}
+	Modifier un Utiliateur
+{% endblock %}
+
+{% block body %}
+	{{parent()}}
+    {% if form.utilisateur is defined %}
+ {% if form.utilisateur != null %}
+	<div class="container">
+		<div class="row justify-content-center">
+
+			<form action="index.php?page=modifUtilisateur" method="post" enctype="application/x-www-form-urlencoded">
+				<fieldset>
+					<legend>Modification d'un compte</legend>
+					<div class="form-group row"></div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Mot de passe *</label>
+						<input class="form-control" id="exampleInputPassword1" name="motdepasse" placeholder="Votre mdp ici"  type="password">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputName1">Nom *</label>
+						<input class="form-control" id="exampleInputname1" name="nom"  type="text" value="{{form.utilisateur.nom}}">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputfirstname1">Prénom *</label>
+						<input class="form-control" id="exampleInputFirstName1" name="prenom" value="{{form.utilisateur.prenom}}" type="text">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputphone1">Tel *
+						</label>
+						<input class="form-control" id="exampleInputphone" name="tel" type="tel" value="{{form.utilisateur.tel}}" pattern="[0-9]{10}" >
+					</div>
+					<div class="form-group">
+						<label for="exampleRole">Role
+						</label>
+						<select class="form-control" name="idrole">
+							
+                            <option value="Client">Client</option>
+                            {% if session.login is defined %}
+							{% if session.role == "Administrateur" %}
+                            <option value="Administrateur">Administrateur</option>
+                            {% endif %}
+                            {% endif %}
+                                
+						</select>
+					</div>
+					<input type="hidden" name="email" value="{{form.utilisateur.email}}"/>
+					
+
+					<button type="submit" name="btEnvoyer" class="btn btn-primary">Modifier</button>
+				</fieldset>
+			</form>
+
+
+            {% else %}
+		
+							{% if session.role == "Administrateur" %}
+ <h2 class="alert alert-danger" role="alert">{{ form.message }}</h2>
+ <a href="index.php?page=utilisateur">Retourner sur la liste des utilisateurs</a>
+ {% endif %}
+ {% if session.role == "Client" %}
+ <h2 class="alert alert-danger" role="alert">{{ form.message }}</h2>
+ <a href="index.php?page=accueil">Retourner sur l'accueil</a>
+ {% endif %}
+ 
+ 
+ 
+ {% endif %}
+
+{% else %}
+ {% if form.valide == true %}
+{% if session.role == "Administrateur" %}
+ <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+ <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=utilisateur">Retourner sur la liste des utilisateurs</a></h1>
+{% endif %}
+{% if session.role == "Client" %}
+ <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+ <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=accueil">Retourner à l'accueil</a></h1>
+{% endif %}
+ {% else %}
+{% if session.role == "Administrateur" %}
+ <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
+ <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=utilisateur">Retourner sur la liste des utilisateurs</a></h1>
+{% endif %}
+{% if session.role == "Client" %}
+<h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+ <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=accueil">Retourner à l'accueil</a></h1>
+ {% endif %}
+ {% endif %}
+{% endif %} 
+
+
+		</div>
+	</div>
+	
+{% endblock %}
